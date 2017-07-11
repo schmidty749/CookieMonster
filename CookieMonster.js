@@ -77,9 +77,8 @@ CM.Cache.RemakeBuildingsPP = function() {
 	CM.Cache.max = -1;
 	CM.Cache.mid = -1;
 	for (var i in CM.Cache.Objects) {
-		//CM.Cache.Objects[i].pp = Game.Objects[i].getPrice() / CM.Cache.Objects[i].bonus;
+		CM.Cache.Objects[i].pp = Game.Objects[i].getPrice() / CM.Cache.Objects[i].bonus;
 		//CM.Cache.Objects[i].pp = (Math.max(Game.Objects[i].getPrice() - (Game.cookies + CM.Disp.GetWrinkConfigBank()), 0) / Game.cookiesPs) + (Game.Objects[i].getPrice() / CM.Cache.Objects[i].bonus);
-		CM.Cache.Objects[i].pp = CM.Sim.cookiesPs;
 		if (CM.Cache.min == -1 || CM.Cache.Objects[i].pp < CM.Cache.min) CM.Cache.min = CM.Cache.Objects[i].pp;
 		if (CM.Cache.max == -1 || CM.Cache.Objects[i].pp > CM.Cache.max) CM.Cache.max = CM.Cache.Objects[i].pp;
 	}
@@ -2771,10 +2770,35 @@ CM.Sim.CalculateGains = function() {
 	if (CM.Sim.Has('An itchy sweater')) mult *= 1.01;
 	if (CM.Sim.Has('Santa\'s dominion')) mult *= 1.2;
 
+	var buildMult=1;
+	if (Sim.hasGod)
+	{
+		var godLvl=Sim.hasGod('asceticism');
+		if (godLvl==1) mult*=1.15;
+		else if (godLvl==2) mult*=1.1;
+		else if (godLvl==3) mult*=1.05;
+		
+		var godLvl=Sim.hasGod('ages');
+		if (godLvl==1) mult*=1+0.1*Math.sin((Date.now()/1000/(60*60*3))*Math.PI*2);
+		else if (godLvl==2) mult*=1+0.1*Math.sin((Date.now()/1000/(60*60*12))*Math.PI*2);
+		else if (godLvl==3) mult*=1+0.1*Math.sin((Date.now()/1000/(60*60*24))*Math.PI*2);
+		
+		var godLvl=Sim.hasGod('decadence');
+		if (godLvl==1) buildMult*=0.93;
+		else if (godLvl==2) buildMult*=0.95;
+		else if (godLvl==3) buildMult*=0.98;
+		
+		var godLvl=Sim.hasGod('industry');
+		if (godLvl==1) buildMult*=1.1;
+		else if (godLvl==2) buildMult*=1.05;
+		else if (godLvl==3) buildMult*=1.03;
+	}
+	
 	if (CM.Sim.Has('Santa\'s legacy')) mult *= 1 + (Game.santaLevel + 1) * 0.03;
 
 	for (var i in CM.Sim.Objects) {
 		var me = CM.Sim.Objects[i];
+		if (Sim.ascensionMode!=1) me.amount*=(1+me.level*0.01)*buildMult;
 		CM.Sim.cookiesPs += me.amount * (typeof(me.cps) == 'function' ? me.cps(me) : me.cps);
 	}
 
@@ -2783,6 +2807,13 @@ CM.Sim.CalculateGains = function() {
 	var milkMult=1;
 	if (CM.Sim.Has('Santa\'s milk and cookies')) milkMult *= 1.05;
 	if (CM.Sim.hasAura('Breath of Milk')) milkMult *= 1.05;
+	if (Sim.hasGod)
+		{
+			var godLvl=Sim.hasGod('mother');
+			if (godLvl==1) milkMult*=1.1;
+			else if (godLvl==2) milkMult*=1.06;
+			else if (godLvl==3) milkMult*=1.03;
+		}
 	if (CM.Sim.Has('Kitten helpers')) mult *= (1 + (CM.Sim.AchievementsOwned / 25) * 0.1 * milkMult);
 	if (CM.Sim.Has('Kitten workers')) mult *= (1 + (CM.Sim.AchievementsOwned / 25) * 0.125 * milkMult);
 	if (CM.Sim.Has('Kitten engineers')) mult *= (1 + (CM.Sim.AchievementsOwned / 25) * 0.15 * milkMult);
@@ -2834,7 +2865,7 @@ CM.Sim.CalculateGains = function() {
 	if (CM.Sim.Has('Golden switch [off]')) {
 		var goldenSwitchMult = 1.5;
 		if (CM.Sim.Has('Residual luck')) {
-			var upgrades = ['Get lucky', 'Lucky day', 'Serendipity', 'Heavenly luck', 'Lasting fortune', 'Decisive fate'];
+			var upgrades = ['Get lucky', 'Lucky day', 'Serendipity', 'Heavenly luck', 'Lasting fortune', 'Decisive fate','Lucky digit','Lucky number','Lucky payout'];
 			for (var i in upgrades) {
 				if (CM.Sim.Has(upgrades[i])) goldenSwitchMult += 0.1;
 			}
