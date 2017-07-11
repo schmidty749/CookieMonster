@@ -2725,6 +2725,7 @@ CM.Sim.CopyData = function() {
 		var me = Game.Objects[i];
 		var you = CM.Sim.Objects[i];
 		you.amount = me.amount;
+		you.level = me.level;
 	}
 
 	// Upgrades
