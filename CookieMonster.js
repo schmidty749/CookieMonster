@@ -2771,24 +2771,24 @@ CM.Sim.CalculateGains = function() {
 	if (CM.Sim.Has('Santa\'s dominion')) mult *= 1.2;
 
 	var buildMult=1;
-	if (Sim.hasGod)
+	if (CM.Sim.hasGod)
 	{
-		var godLvl=Sim.hasGod('asceticism');
+		var godLvl=CM.Sim.hasGod('asceticism');
 		if (godLvl==1) mult*=1.15;
 		else if (godLvl==2) mult*=1.1;
 		else if (godLvl==3) mult*=1.05;
 		
-		var godLvl=Sim.hasGod('ages');
+		var godLvl=CM.Sim.hasGod('ages');
 		if (godLvl==1) mult*=1+0.1*Math.sin((Date.now()/1000/(60*60*3))*Math.PI*2);
 		else if (godLvl==2) mult*=1+0.1*Math.sin((Date.now()/1000/(60*60*12))*Math.PI*2);
 		else if (godLvl==3) mult*=1+0.1*Math.sin((Date.now()/1000/(60*60*24))*Math.PI*2);
 		
-		var godLvl=Sim.hasGod('decadence');
+		var godLvl=CM.Sim.hasGod('decadence');
 		if (godLvl==1) buildMult*=0.93;
 		else if (godLvl==2) buildMult*=0.95;
 		else if (godLvl==3) buildMult*=0.98;
 		
-		var godLvl=Sim.hasGod('industry');
+		var godLvl=CM.Sim.hasGod('industry');
 		if (godLvl==1) buildMult*=1.1;
 		else if (godLvl==2) buildMult*=1.05;
 		else if (godLvl==3) buildMult*=1.03;
@@ -2798,7 +2798,7 @@ CM.Sim.CalculateGains = function() {
 
 	for (var i in CM.Sim.Objects) {
 		var me = CM.Sim.Objects[i];
-		if (Sim.ascensionMode!=1) me.amount*=(1+me.level*0.01)*buildMult;
+		if (CM.Sim.ascensionMode!=1) me.amount*=(1+me.level*0.01)*buildMult;
 		CM.Sim.cookiesPs += me.amount * (typeof(me.cps) == 'function' ? me.cps(me) : me.cps);
 	}
 
@@ -2807,9 +2807,9 @@ CM.Sim.CalculateGains = function() {
 	var milkMult=1;
 	if (CM.Sim.Has('Santa\'s milk and cookies')) milkMult *= 1.05;
 	if (CM.Sim.hasAura('Breath of Milk')) milkMult *= 1.05;
-	if (Sim.hasGod)
+	if (CM.Sim.hasGod)
 	{
-		var godLvl=Sim.hasGod('mother');
+		var godLvl=CM.Sim.hasGod('mother');
 		if (godLvl==1) milkMult*=1.1;
 		else if (godLvl==2) milkMult*=1.06;
 		else if (godLvl==3) milkMult*=1.03;
