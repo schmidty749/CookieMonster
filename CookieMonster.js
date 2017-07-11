@@ -2808,12 +2808,12 @@ CM.Sim.CalculateGains = function() {
 	if (CM.Sim.Has('Santa\'s milk and cookies')) milkMult *= 1.05;
 	if (CM.Sim.hasAura('Breath of Milk')) milkMult *= 1.05;
 	if (Sim.hasGod)
-		{
-			var godLvl=Sim.hasGod('mother');
-			if (godLvl==1) milkMult*=1.1;
-			else if (godLvl==2) milkMult*=1.06;
-			else if (godLvl==3) milkMult*=1.03;
-		}
+	{
+		var godLvl=Sim.hasGod('mother');
+		if (godLvl==1) milkMult*=1.1;
+		else if (godLvl==2) milkMult*=1.06;
+		else if (godLvl==3) milkMult*=1.03;
+	}
 	if (CM.Sim.Has('Kitten helpers')) mult *= (1 + (CM.Sim.AchievementsOwned / 25) * 0.1 * milkMult);
 	if (CM.Sim.Has('Kitten workers')) mult *= (1 + (CM.Sim.AchievementsOwned / 25) * 0.125 * milkMult);
 	if (CM.Sim.Has('Kitten engineers')) mult *= (1 + (CM.Sim.AchievementsOwned / 25) * 0.15 * milkMult);
