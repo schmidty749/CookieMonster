@@ -159,7 +159,8 @@ CM.Cache.RemakeUpgradePP = function() {
 		CM.Cache.Upgrades[i].pp = (Math.max(Game.Upgrades[i].getPrice() - (Game.cookies + CM.Disp.GetWrinkConfigBank()) + CM.Cache.LuckyFrenzy, 0) / Game.cookiesPs) + (Game.Upgrades[i].getPrice() / CM.Cache.Upgrades[i].bonus);
 		if (isNaN(CM.Cache.Upgrades[i].pp)) CM.Cache.Upgrades[i].pp = 'Infinity';
 		var color = '';
-		if (CM.Cache.Upgrades[i].pp <= 0 || CM.Cache.Upgrades[i].pp == 'Infinity') color = CM.Disp.colorGray;
+		if (i == 'Elder Covenant') CM.Cache.Upgrades[i].pp == CM.Cache.FrenzyLuckyPP;
+		else if (CM.Cache.Upgrades[i].pp <= 0 || CM.Cache.Upgrades[i].pp == 'Infinity') color = CM.Disp.colorGray;
 		else if (CM.Cache.Upgrades[i].pp < CM.Cache.min){
 			if (CM.Cache.Upgrades[i].pp > CM.Cache.FrenzyLuckyPP) color = CM.Disp.colorBlue;
 			else color = CM.Disp.colorGreen;
