@@ -160,7 +160,7 @@ CM.Cache.RemakeUpgradePP = function() {
 		if (isNaN(CM.Cache.Upgrades[i].pp)) CM.Cache.Upgrades[i].pp = 'Infinity';
 		var color = '';
 		if (i == 'Elder Covenant') CM.Cache.Upgrades[i].pp == CM.Cache.FrenzyLuckyPP;
-		else if (CM.Cache.Upgrades[i].pp <= 0 || CM.Cache.Upgrades[i].pp == 'Infinity') color = CM.Disp.colorGray;
+		if (CM.Cache.Upgrades[i].pp <= 0 || CM.Cache.Upgrades[i].pp == 'Infinity') color = CM.Disp.colorGray;
 		else if (CM.Cache.Upgrades[i].pp < CM.Cache.min){
 			if (CM.Cache.Upgrades[i].pp > CM.Cache.FrenzyLuckyPP) color = CM.Disp.colorBlue;
 			else color = CM.Disp.colorGreen;
