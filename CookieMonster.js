@@ -1,23 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Gist
- @schmidty749
- Sign out
- Unwatch 1
-  Star 0
-  Fork 24 schmidty749/CookieMonster
-forked from Aktanusa/CookieMonster
- Code  Pull requests 0  Projects 0  Wiki  Settings Insights 
-Branch: master Find file Copy pathCookieMonster/CookieMonster.js
-26a9ef5  6 days ago
-@schmidty749 schmidty749 Update CookieMonster.js
-4 contributors @Aktanusa @schmidty749 @DeathOfBalance @Alhifar
-RawBlameHistory     
-3138 lines (2808 sloc)  119 KB
 /**********
  * Header *
  **********/
