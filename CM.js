@@ -2761,6 +2761,7 @@ CM.Sim.InitData = function() {
 		// Below is needed for above eval!
 		you.baseCps = me.baseCps;
 		you.name = me.name;
+		
 	}
 
 	// Upgrades
@@ -2865,8 +2866,12 @@ CM.Sim.CalculateGains = function() {
 
 	for (var i in CM.Sim.Objects) {
 		var me = CM.Sim.Objects[i];
-		if (Game.ascensionMode!=1) me.amount*=(1+me.level*0.01)*buildMult;
-		CM.Sim.cookiesPs += me.amount * (typeof(me.cps) == 'function' ? me.cps(me) : me.cps);
+		var lumpMult = 1;
+		if (Game.ascensionMode!=1) lumpMult = (1+me.level*0.01)*buildMult;
+		CM.Sim.cookiesPs += lumpMult * me.amount * (typeof(me.cps) == 'function' ? me.cps(me) : me.cps);
+		   
+
+		 
 	}
 
 	if (CM.Sim.Has('"egg"')) CM.Sim.cookiesPs += 9; // "egg"
