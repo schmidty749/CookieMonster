@@ -144,7 +144,7 @@ CM.Cache.RemakeBuildingsPP = function() {
 		var color = '';
 		if (CM.Cache.Objects[i].pp == CM.Cache.min) {
 			if (CM.Cache.Objects[i].pp > CM.Cache.FrenzyLuckyPP) color = CM.Disp.colorGreen;
-			else CM.Disp.colorBlue;
+			else color = CM.Disp.colorBlue;
 		}
 		else if (CM.Cache.Objects[i].pp == CM.Cache.max) color = CM.Disp.colorRed;
 		else if (CM.Cache.Objects[i].pp > CM.Cache.mid) color = CM.Disp.colorOrange;
