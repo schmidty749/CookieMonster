@@ -130,6 +130,7 @@ CM.Cache.RemakeFrenzyLuckyPP = function() {
 		if(Game.cookies < CM.Cache.Lucky) GCIncome += (CM.Cache.LuckyReward - (Game.cookies*.15))*luckyChance*(1 - frenzyChance)/GCSecs
 	}
 	CM.Cache.FrenzyLuckyPP = (Math.max(CM.Cache.LuckyFrenzy - (Game.cookies + CM.Disp.GetWrinkConfigBank()), 0) / Game.cookiesPs) + (Math.max(CM.Cache.LuckyFrenzy - (Game.cookies + CM.Disp.GetWrinkConfigBank()), 0) / GCIncome);
+	CM.Cache.FrenzyLuckyBonus = GCIncome;
 }
 CM.Cache.RemakeBuildingsPP = function() {
 	CM.Cache.min = -1;
@@ -163,7 +164,7 @@ CM.Cache.RemakeUpgradePP = function() {
 		CM.Cache.Upgrades[i].pp = (Math.max(Game.Upgrades[i].getPrice() - (Game.cookies + CM.Disp.GetWrinkConfigBank()), 0) / Game.cookiesPs) + (Game.Upgrades[i].getPrice() / CM.Cache.Upgrades[i].bonus);
 		if (isNaN(CM.Cache.Upgrades[i].pp)) CM.Cache.Upgrades[i].pp = 'Infinity';
 		var color = '';
-		if (i == 'Elder Covenant') CM.Cache.Upgrades[i].pp = CM.Cache.FrenzyLuckyPP;
+		
 		if (CM.Cache.Upgrades[i].pp <= 0 || CM.Cache.Upgrades[i].pp == 'Infinity') color = CM.Disp.colorGray;
 		else if (CM.Cache.Upgrades[i].pp < CM.Cache.min){
 			if (CM.Cache.Upgrades[i].pp > CM.Cache.FrenzyLuckyPP) color = CM.Disp.colorBlue;
@@ -176,6 +177,8 @@ CM.Cache.RemakeUpgradePP = function() {
 		else color = CM.Disp.colorYellow;
 		CM.Cache.Upgrades[i].color = color;
 	}
+	CM.Cache.Upgrades['Festive Biscuit'].pp = CM.Cache.FrenzyLuckyPP;
+	CM.Cache.Upgrades['Festive Biscuit'].bonus = CM.Cache.FrenzyLuckyBonus;
 }
 
 CM.Cache.RemakeBuildingsOtherPP = function(amount, target) {
