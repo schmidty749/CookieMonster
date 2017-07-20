@@ -177,8 +177,8 @@ CM.Cache.RemakeUpgradePP = function() {
 		else color = CM.Disp.colorYellow;
 		CM.Cache.Upgrades[i].color = color;
 	}
-	CM.Cache.Upgrades['Festive Biscuit'].pp = CM.Cache.FrenzyLuckyPP;
-	CM.Cache.Upgrades['Festive Biscuit'].bonus = CM.Cache.FrenzyLuckyBonus;
+	CM.Cache.Upgrades['Elder Covenant'].pp = CM.Cache.FrenzyLuckyPP;
+	CM.Cache.Upgrades['Elder Covenant'].bonus = CM.Cache.FrenzyLuckyBonus;
 }
 
 CM.Cache.RemakeBuildingsOtherPP = function(amount, target) {
