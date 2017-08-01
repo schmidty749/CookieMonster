@@ -2901,6 +2901,8 @@ CM.Sim.CalculateGains = function() {
 	if (CM.Sim.Has('Kitten accountants')) mult *= (1 + (CM.Sim.AchievementsOwned / 25) * 0.2 * milkMult);
 	if (CM.Sim.Has('Kitten specialists')) mult *= (1 + (CM.Sim.AchievementsOwned / 25) * 0.2 * milkMult);
 	if (CM.Sim.Has('Kitten experts')) mult *= (1 + (CM.Sim.AchievementsOwned / 25) * 0.2 * milkMult);
+	if (CM.Sim.Has('Kitten consultants')) mult *= (1 + (CM.Sim.AchievementsOwned / 25) * 0.2 * milkMult);
+	if (CM.Sim.Has('Kitten assistants to the regional manager')) mult *= (1 + (CM.Sim.AchievementsOwned / 25) * 0.2 * milkMult);
 	if (CM.Sim.Has('Kitten angels')) mult *= (1 + (CM.Sim.AchievementsOwned / 25) * 0.1 * milkMult);
 
 	var eggMult = 1;
